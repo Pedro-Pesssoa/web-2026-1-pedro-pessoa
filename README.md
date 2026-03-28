@@ -1,63 +1,46 @@
 # Sistema de Gestão de Contratação de Estagiários - UFERSA
 
-## 📌 Descrição
+## Descrição
 
 Este projeto tem como objetivo desenvolver uma plataforma web para gerenciar o processo de contratação de estagiários não obrigatórios na UFERSA, automatizando etapas e centralizando informações.
+O projeto foi desenvolvido como parte da avaliação da disciplina, sob a orientação do professor Walber Jose Adriano Silva, com o intuito de consolidar na prática os conceitos de engenharia de software, modelagem UML e arquitetura de sistemas distribuídos.
 
 ---
 
-## 🎯 Problema
+## Problema
 
-O processo atual apresenta:
-
-* Falta de centralização
-* Comunicação fragmentada
-* Baixa transparência
-* Retrabalho com documentos
+A UFERSA realiza periodicamente a Contratação de Estagiários, processo mapeado na categoria Gestão de Pessoas do Portfólio de Processos (ep.ufersa.edu.br/portfolio). Atualmente, esse processo envolve múltiplos atores (discente, supervisor, setor de estágios, RH), troca de documentos em papel ou e-mail avulso, e ausência de rastreabilidade centralizada do status de cada solicitação.
+O problema é que não existe um sistema web integrado que centralize as etapas de: abertura de vaga pelo supervisor, candidatura do discente, envio de documentação, análise pelo setor responsável, geração do termo de compromisso e notificação automática das partes. Isso gera retrabalho, demoras e perda de documentos.
+Solução proposta: desenvolver uma aplicação web que digitalize e automatize o fluxo completo de contratação de estagiários da UFERSA, com acompanhamento em tempo real por todos os envolvidos e uso de IA generativa para triagem e auxílio documental.
 
 ---
 
-## 🚀 Solução
+## Perfis de Usuário
 
-Uma aplicação web que:
-
-* Gerencia vagas de estágio
-* Permite candidatura online
-* Automatiza fluxo de aprovação
-* Centraliza documentos
-* Permite acompanhamento em tempo real
+* Discente - Candidato à vaga de estágio; cadastra documentos e acompanha o processo
+* Docente / Supervisor - Solicita abertura de vaga e acompanha o estagiário vinculado
+* Técnico-Administrativo (RH) - Analisa documentação, aprova etapas e emite termos
+* Coordenação - Preenche dados da empresa e assina termos digitalmente
 
 ---
 
-## 👥 Perfis de Usuário
+## Informações a serem armazenadas
 
-* Discente
-* Docente / Supervisor
-* Técnico-Administrativo (RH)
-* Coordenação
-
----
-
-## 🧱 Arquitetura
-
-* Frontend: Next.js
-* Backend: Django REST Framework
-* Banco de Dados: PostgreSQL
-* Armazenamento: AWS S3
-* Infraestrutura: AWS (EC2, RDS, CloudFront)
+* Candidato/Discente: matrícula, CPF, nome completo, curso, período, contato, histórico escolar, currículo.
+* Vaga de estágio: descrição da vaga, carga horária, período, supervisor responsável, setor/empresa concedente, status (aberta / em análise / preenchida / encerrada).
+* Documentação: termo de compromisso, apólice de seguro, declaração de matrícula, plano de atividades, relatórios de estágio parciais e final.
+* Processo: histórico de status com datas e responsável por cada transição, observações e pareceres, assinaturas digitais.
+* Notificações: log de e-mails e alertas enviados, com timestamp e destinatário.
 
 ---
 
-## ☁️ Infraestrutura (AWS)
+## Arquitetura do sistema
 
-Estimativa de custo mensal: **US$ 30–45**
+* [Estimativa de custos AWS](https://calculator.aws/#/estimate?id=2c179daa74b54c5fe5f9fa5afaa7ac54b6cf3ffb)
 
-Serviços utilizados:
+![Arquitetura do Sistema](./docs/arquitetura)
 
-* EC2
-* RDS
-* S3
-* CloudFront
+O usuário acessa o sistema pelo domínio registrado no Route 53, que direciona para dois destinos: o S3 (serve o frontend Next.js estático) e o API Gateway (recebe as chamadas da API). O API Gateway repassa as requisições ao EC2 rodando o backend Django. O backend então persiste os dados das vagas, processos e usuários no DynamoDB, salva os arquivos e documentos PDF no S3 de documentos, dispara e-mails de notificação via SES e chama a Claude API para as funcionalidades de IA generativa.
 
 ---
 
@@ -66,31 +49,6 @@ Serviços utilizados:
 O sistema utilizará IA generativa para:
 
 * Análise de candidaturas
-
----
-
-## 📂 Estrutura do Projeto
-
-```
-/backend   → API Django
-/frontend  → Interface Next.js
-/docs      → Diagramas e documentação
-```
-
----
-
-## 📚 Documentação
-
-Toda a documentação do projeto pode ser encontrada na pasta abaixo:
-
-📁 [/docs](./docs)
-
-### 📌 Conteúdo disponível
-
-* Arquitetura do sistema
-* [Estimativa de custos AWS](https://calculator.aws/#/estimate?id=2c179daa74b54c5fe5f9fa5afaa7ac54b6cf3ffb)
-* Requisitos do sistema
-* Diagramas
 
 
 ## 🔗 Repositório
