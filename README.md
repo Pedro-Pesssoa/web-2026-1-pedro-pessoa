@@ -38,31 +38,19 @@ Solução proposta: desenvolver uma aplicação web que digitalize e automatize 
 
 * [Estimativa de custos AWS](https://calculator.aws/#/estimate?id=2c179daa74b54c5fe5f9fa5afaa7ac54b6cf3ffb)
 
-![Arquitetura do Sistema](./docs/arquitetura)
+![Arquitetura do Sistema](./docs/arquitetura.jpg)
 
 O usuário acessa o sistema pelo domínio registrado no Route 53, que direciona para dois destinos: o S3 (serve o frontend Next.js estático) e o API Gateway (recebe as chamadas da API). O API Gateway repassa as requisições ao EC2 rodando o backend Django. O backend então persiste os dados das vagas, processos e usuários no DynamoDB, salva os arquivos e documentos PDF no S3 de documentos, dispara e-mails de notificação via SES e chama a Claude API para as funcionalidades de IA generativa.
 
 ---
 
-## 🤖 Uso de IA
+## Uso de IA
 
-O sistema utilizará IA generativa para:
-
-* Análise de candidaturas
+O projeto integrará a Google Gemini API (plano gratuito — Google AI Studio) para disponibilizar um chatbot de dúvidas sobre o processo de contratação de estagiários. O chatbot é alimentado com um prompt de sistema contendo as regras institucionais da UFERSA e responde perguntas dos discentes em linguagem natural, reduzindo a demanda de atendimento no setor de estágios.
 
 
 ## 🔗 Repositório
 
 Nome: **web-2026-1-pedro-pessoa**
 
----
-
-## 👨‍💻 Autor
-
-Pedro Pessoa
-
----
-
-## 📌 Status
-
-🚧 Em desenvolvimento
+👨‍💻 Autor: Pedro Pessoa
