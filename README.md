@@ -79,6 +79,20 @@ O sistema utilizará IA generativa para:
 
 ---
 
+## 📚 Documentação
+
+Toda a documentação do projeto pode ser encontrada na pasta abaixo:
+
+📁 [/docs](./docs)
+
+### 📌 Conteúdo disponível
+
+* Arquitetura do sistema
+* [Estimativa de custos AWS](https://calculator.aws/#/estimate?id=2c179daa74b54c5fe5f9fa5afaa7ac54b6cf3ffb)
+* Requisitos do sistema
+* Diagramas
+
+
 ## 🔗 Repositório
 
 Nome: **web-2026-1-pedro-pessoa**
